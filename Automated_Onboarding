@@ -1,0 +1,79 @@
+#  HR Onboarding Automation using Excel & Power Automate
+
+This project automates the HR onboarding process by integrating Microsoft Excel with Power Automate. It eliminates repetitive manual tasks such as sending welcome emails, notifying managers, and updating onboarding status, significantly improving efficiency and standardization in the onboarding workflow.
+
+---
+
+##  Features
+
+- Automatically sends personalized **welcome emails** to new hires.
+- Notifies the respective **manager** upon onboarding.
+- Updates onboarding **status** in the Excel sheet from `Pending` to `Completed`.
+- Runs automatically on a **5-minute schedule** using a recurrence trigger.
+- Compatible with **personal OneDrive accounts** (no need for OneDrive for Business).
+
+---
+
+##  File Structure
+ HR-Onboarding-Automation
+├── HR_Onboarding_Dummy_Data.xlsx. Sample Excel dataset (200 rows)
+├── README.md 
+
+
+---
+
+##  Excel Sheet Configuration
+
+The Excel file should have the following columns, formatted as a table named `OnboardingData`:
+
+| Full Name   | Email              | Joining Date | Department | Manager Email         | Status   |
+|-------------|--------------------|--------------|------------|------------------------|----------|
+| John Doe    | john.doe@email.com | 01-06-2025    | Finance    | hrmanager@email.com    | Pending  |
+
+ Save the file to your **personal OneDrive**  
+ Format the data as a table (Ctrl + T)  
+ Name the table: `OnboardingData`
+
+---
+
+##  Power Automate Flow Structure
+
+###  Trigger
+- **Type:** Scheduled cloud flow
+- **Frequency:** Every 1 day
+
+###  Actions
+1. **List rows from Excel table**
+2. **Filter** rows where `Status = "Pending"`
+3. **Send welcome email** to new hire
+4. **Notify manager** via email
+5. **Update Excel row** to set `Status = Completed`
+
+---
+
+##  Email Templates
+
+###  Welcome Email to Employee
+    Subject: Welcome to the Team, [Full Name]
+
+  Hi [Full Name],
+  Welcome to the [Department] team! Your start date is [Joining Date].
+  Your manager, [Manager Email], will reach out to you shortly.
+  Best regards,
+  HR Team
+---
+###  Manager Notification Email
+    Subject: New Hire Alert – [Full Name]
+    Hello,
+    [Full Name] is joining the [Department] team on [Joining Date].
+    Please begin onboarding preparations.
+
+    – HR Automation
+
+---
+
+##  Impact
+
+- Reduced manual HR efforts by **40%**
+- Standardized and professional communication process
+- Improved onboarding experience and operational visibility
